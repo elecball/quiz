@@ -1,6 +1,6 @@
 const id = document.querySelector("#id"),
     password = document.querySelector("#password"),
-    loginbtn = document.querySelector("#button");
+    loginbtn = document.querySelector(".login-btn");
 
 loginbtn.addEventListener("click", login);
 
@@ -16,10 +16,11 @@ function login() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(req)
-    }).then((res) => res.json())
+    })
+    .then((res) => res.json())
     .then((res) => {
         if (res.success) {
-            location.href = "/";
+            location.href = "/"; // 대충 성공
         } else {
             alert(res.msg);
         }

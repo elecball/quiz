@@ -7,18 +7,23 @@
 
     <link rel="stylesheet" href="/css/home/login.css">
     <script src="/js/home/login.js" defer></script>
-    <title>Document</title>
+    <title>TITLE</title>
 </head>
 <body>
-    <div class="login-page">
-        <div class="form">
-          <form class="login-form">
-            <input id="id" type="text" placeholder="id"/>
-            <input id="password" type="password" placeholder="password"/>
-            <p id="button">login</p>
-            <p class="message">Not registered? <a href="/register">Create an account</a></p>
-          </form>
-        </div>
+  <div class="login-box">
+    <h2>Login</h2>
+    <form>
+      <div class="user-box">
+        <input id="id" type="text" name="" required="">
+        <label>ID</label>
       </div>
+      <div class="user-box">
+        <input id="password" type="password" name="" required="">
+        <label>Password</label>
+      </div>
+      <a class="login-btn">Login</a>
+      <p class="message">Not registered? <a href="/register">Create an account</a></p>
+    </form>
+  </div>
 </body>
 </html>

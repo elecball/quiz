@@ -7,20 +7,31 @@
 
     <link rel="stylesheet" href="/css/home/login.css">
     <script src="/js/home/register.js" defer></script>
-    <title>Document</title>
+    <title>TITLE</title>
 </head>
 <body>
-    <div class="login-page">
-        <div class="form">
-          <form class="login-form">
-            <input id="id" type="text" placeholder="id"/>
-            <input id="name" type="text" placeholder="name"/>
-            <input id="password" type="password" placeholder="password"/>
-            <input id="confirm-password" type="password" placeholder="password confirm"/>
-            <p id="button">sign up</p>
-            <p class="message">Already registered? <a href="/login">login</a></p>
-          </form>
-        </div>
+  <div class="login-box">
+    <h2>Register</h2>
+    <form>
+      <div class="user-box">
+        <input id="name" type="text" name="" required="">
+        <label>Name</label>
       </div>
+      <div class="user-box">
+        <input id="id" type="text" name="" required="">
+        <label>ID</label>
+      </div>
+      <div class="user-box">
+        <input id="password" type="password" name="" required="">
+        <label>Password</label>
+      </div>
+      <div class="user-box">
+        <input id="confirm-password" type="password" name="" required="">
+        <label>Password confirm</label>
+      </div>
+      <a class="register-btn">Regitser</a>
+      <p class="message">Already registered? <a href="/login">login</a></p>
+    </form>
+  </div>
 </body>
 </html>
