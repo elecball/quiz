@@ -28,6 +28,9 @@ const output = {
     },
     register: (req, res) => {
         res.render("home/register");
+    },
+    quiz: (req, res) => {
+        res.render("quiz/quiz");
     }
 }
 
@@ -70,6 +73,16 @@ const process = {
         }
         return res.json(response);
     },
+    isExisting: async (req, res) => {
+        const response = { exist: false };
+
+        await userList().findOne({"id": req.body.id}).then(obj => {
+            if (obj != null) {
+                response.exist = true;
+            }
+        });
+        return res.json(response);
+    }
 }
 
 module.exports = {
