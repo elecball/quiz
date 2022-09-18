@@ -20,12 +20,14 @@ function login() {
     .then((res) => res.json())
     .then((res) => {
         if (res.success) {
+            Cookies.set("userID", res.userInfo.id);
+            Cookies.set("userName", res.userInfo.name);
             location.href = "/"; // 대충 성공
         } else {
             alert(res.msg);
         }
     })
     .catch((err) => {
-        console.error(new Error("error occured"));
+        console.error(new Error("error occured : " + err.toString()));
     });
 }

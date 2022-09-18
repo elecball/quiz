@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <link rel="stylesheet" href="/css/home/login.css">
     <script src="/js/home/login.js" defer></script>
     <title>TITLE</title>
@@ -14,11 +15,11 @@
     <h2>Login</h2>
     <form>
       <div class="user-box">
-        <input id="id" type="text" name="" required="">
+        <input id="id" type="text" name="" required="" autocomplete="off">
         <label>ID</label>
       </div>
       <div class="user-box">
-        <input id="password" type="password" name="" required="">
+        <input id="password" type="password" name="" required="" autocomplete="off">
         <label>Password</label>
       </div>
       <a class="login-btn">Login</a>

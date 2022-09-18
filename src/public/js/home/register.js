@@ -1,5 +1,5 @@
 const id = document.querySelector("#id"),
-    name = document.querySelector("#name"),
+    nameL = document.querySelector("#name"),
     password = document.querySelector("#password"),
     confirmPassword = document.querySelector("#confirm-password"),
     registerbtn = document.querySelector(".register-btn");
@@ -8,13 +8,13 @@ registerbtn.addEventListener("click", register);
 
 function register() {
     if (!id.value) return alert("enter ID");
-    if (!id.name) return alert("enter name");
-    if (!id.password) return alert("enter password");
+    if (!nameL.value) return alert("enter name");
+    if (!password.value) return alert("enter password");
     if (password.value !== confirmPassword.value) return alert("password not matched");
 
     const req = {
         id: id.value,
-        name: name.value,
+        name: nameL.value,
         password: password.value,
     };
 

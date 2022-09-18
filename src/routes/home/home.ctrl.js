@@ -34,35 +34,39 @@ const output = {
 const process = {
     login: async (req, res) => {
         const index = await userList().findOne({"id": req.body.id});
-        const response = {};
+        const response = { userInfo: { id: index.id, name: index.name }};
         if (index == null) {
             response.success = false;
-            response.msg = "id not exists";
+            response.msg = "id not exist";
         }
         else if (crypto.createHmac('sha256', 'verySecretKey').update(req.body.password).digest('hex') != index.password) {
             response.success = false;
-            response.msg = "password not matched";
+            response.msg = "password incorrect";
         }
         else {
             response.success = true;
         }
-        
+
         return res.json(response);
     },
     register: async (req, res) => {
-        const response = {};
-        if (userList().findOne({"id": req.body.id}) == null) {
-            response.success = false;
-            response.msg = "already exists";
-        }
-        else {
+        const response = { success: true };
+
+        await userList().findOne({"id": req.body.id}).then(obj => {
+            if (obj != null) {
+                response.success = false;
+                response.msg = "ID already exists";
+            }
+        });
+
+        console.log(response);
+
+        if (response.success) {
             userList().insertOne({ 
                 "id": req.body.id, 
                 "name": req.body.name, 
                 "password": crypto.createHmac('sha256', 'verySecretKey').update(req.body.password).digest('hex')
             });
-            response.success = true;
-            
         }
         return res.json(response);
     },
