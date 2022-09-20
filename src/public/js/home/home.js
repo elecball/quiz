@@ -71,7 +71,7 @@ function go_quiz() {
 }
 
 function go_admin() {
-    alert("z");
+    location.href = "/admin";
 }
 
 

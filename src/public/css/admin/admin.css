@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+html, body {
+    background-color: #222222;
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+    margin: 0 0;
+    text-align: center;
+}
+
+.div {
+    width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    margin-top: 50px;
+    width: 70%;
+    display: inline-block;
+    padding: 20px 0;
+}
+
+.container .answers {
+    background: hsl(184, 98%, 90%);
+    margin: 30px 1rem;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    border: 1px solid #222;
+    border-collapse: separate;
+    display: table;
+    table-layout: auto;
+}
+
+.container .btns .btn {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #555555;
+    width: 89%;
+    border: 0;
+    margin: 300px 10px;
+    padding: 10px 15px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}

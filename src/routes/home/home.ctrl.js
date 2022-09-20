@@ -7,7 +7,7 @@ const client = new MongoClient(uri);
 async function connect() {
     try {
         await client.connect();
-        console.log("Connected to MongoDB");
+        console.log("Connected to MongoDB in home.ctrl.js");
     } catch (error) {
         console.error(error);
     }
@@ -68,7 +68,8 @@ const process = {
             userList().insertOne({ 
                 "id": req.body.id, 
                 "name": req.body.name, 
-                "password": crypto.createHmac('sha256', 'verySecretKey').update(req.body.password).digest('hex')
+                "password": crypto.createHmac('sha256', 'verySecretKey').update(req.body.password).digest('hex'),
+                "admin": false
             });
         }
         return res.json(response);
