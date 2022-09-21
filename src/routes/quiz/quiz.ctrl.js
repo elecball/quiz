@@ -21,10 +21,17 @@ function userList() {
     return client.db("Login").collection("Info");
 }
 
-async function quizAnswer(index) {
-    return await client.db("Quiz").collection("Quiz").findOne({name: "answer"}).then(obj => {
-        return obj[index];
+async function quizAnswer() {
+    return client.db("Quiz").collection("Quiz").findOne({name: "answer"}).then(obj => {
+        var result = [-1];
+        for (var i = 1; i <= 10; i++)
+            result.push(obj[i]);
+        return result;
     });
+}
+
+async function quizDLTime() {
+    return await client.db("Quiz").collection("Quiz").findOne({name: "deadline"});
 }
 
 const output = {
@@ -35,17 +42,32 @@ const output = {
 
 const process = {
     sendAnswer: async (req, res) => {
+        const time = new Date().getTime();
         const answers = req.body.answer, answer = {};
         var score = 0;
-        for (var i = 1; i <= 10; i++) {
-            answer[i.toString()] = { value: answers[i], time: new Date().getTime() };
-            if (await quizAnswer(i) == answers[i]) 
-                score++;
-        }
-        await client.db("Quiz").collection("Answers").insertOne({
-            id: req.body.id, name: req.body.name, answers: answer, score: score
+        quizDLTime().then(async t => {
+            const qAns = await quizAnswer();
+            for (var i = 1; i <= 10; i++) {
+                answer[i] = { value: answers[i], time: time };
+                console.log(t[i], answer[i].time, t[i] < answer[i].time);
+                if (qAns[i] == answers[i]) {
+                    var isLate = false;
+                    if (t[i] != undefined) 
+                        if (t[i] < answer[i].time) isLate = true;
+                    
+                    if (!isLate)
+                        score++;
+                }
+            }
+            client.db("Quiz").collection("Answers").insertOne({
+                id: req.body.id, name: req.body.name, answers: answer, score: score
+            });
+
+            console.log({
+                id: req.body.id, name: req.body.name, answers: answer, score: score
+            });
+            return res.json({ score: score });
         });
-        return await res.json({ score: score });
     }
 }
 

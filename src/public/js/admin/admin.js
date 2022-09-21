@@ -75,7 +75,7 @@ async function setEles() {
     })
     .then((res) => res.json())
     .then((res) => {
-        if (res.index >= 10) {
+        if (res.index > 10) {
             dlBtn.innerHTML = "모두 마감됨";
         }
         else {

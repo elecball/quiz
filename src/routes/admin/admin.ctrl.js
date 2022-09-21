@@ -26,7 +26,7 @@ function answersList() {
 }
 
 async function quizCol() {
-    return await client.db("Quiz").collection("Quiz");
+    return client.db("Quiz").collection("Quiz");
 }
 
 const output = {
@@ -86,12 +86,13 @@ const process = {
         });
     },
     closeQuiz: async (req, res) => {
+        const time = new Date().getTime();
         var index = -1, response = { success : false };
         (await quizCol()).findOne({name: "deadline"}).then(async obj => {
             var newDoc = obj;
             index = Object.keys(newDoc).length - 1;
-            if (index == 10) return res.json(response);
-            newDoc[index] = new Date().getTime();
+            if (index > 10) return res.json(response);
+            newDoc[index] = time;
             (await quizCol()).findOneAndReplace({name: "deadline"}, newDoc).then((r) => {
                 response.success = true;
                 return res.json(response);

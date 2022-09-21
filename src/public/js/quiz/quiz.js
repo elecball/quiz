@@ -4,7 +4,8 @@ const quizIndex = document.querySelector("#index"),
 const btn1 = document.querySelector("#guess1"),
     btn2 = document.querySelector("#guess2"),
     btn3 = document.querySelector("#guess3"),
-    btn4 = document.querySelector("#guess4");
+    btn4 = document.querySelector("#guess4"),
+    exitBtn = document.querySelector("#exit");
 
 const nameL = document.querySelector("#username");
 
@@ -14,6 +15,7 @@ btn1.addEventListener('click', () => submitAnswer(1));
 btn2.addEventListener('click', () => submitAnswer(2));
 btn3.addEventListener('click', () => submitAnswer(3));
 btn4.addEventListener('click', () => submitAnswer(4));
+exitBtn.addEventListener('click', () => location.href = "/");
 
 var index = 1;
 var answers = [0];
@@ -44,6 +46,7 @@ function submitAnswer(num) {
         })
         .then((res) => res.json())
         .then((res) => {
+            console.log(res);
             scoreL.innerHTML = res.score;
             scoreL.hidden = false;
         })
