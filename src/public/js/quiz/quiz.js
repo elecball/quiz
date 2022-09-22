@@ -18,11 +18,14 @@ btn4.addEventListener('click', () => submitAnswer(4));
 exitBtn.addEventListener('click', () => location.href = "/");
 
 var index = 1;
-var answers = [0];
+var answers = [{}];
 quizIndex.innerHTML = index.toString();
 
 function submitAnswer(num) {
-    answers[index] = num;
+    answers[index] = {
+        value: num,
+        time: new Date().getTime()
+    };
 
     if (index >= 10) {
         quizIndex.hidden = true;

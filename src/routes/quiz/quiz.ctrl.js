@@ -34,6 +34,12 @@ async function quizDLTime() {
     return await client.db("Quiz").collection("Quiz").findOne({name: "deadline"});
 }
 
+async function getQuizIndex () {
+    return (await quizCol()).findOne({name: "deadline"}).then(obj => {
+        return Object.keys(obj).length - 1;
+    });
+}
+
 const output = {
     quiz: (req, res) => {
         res.render("quiz/quiz");
@@ -42,15 +48,13 @@ const output = {
 
 const process = {
     sendAnswer: async (req, res) => {
-        const time = new Date().getTime();
         const answers = req.body.answer, answer = {};
         var score = 0;
         quizDLTime().then(async t => {
             const qAns = await quizAnswer();
             for (var i = 1; i <= 10; i++) {
-                answer[i] = { value: answers[i], time: time };
-                console.log(t[i], answer[i].time, t[i] < answer[i].time);
-                if (qAns[i] == answers[i]) {
+                answer[i] = { value: answers[i].value, time: answers[i].time };
+                if (qAns[i] == answers[i].value) {
                     var isLate = false;
                     if (t[i] != undefined) 
                         if (t[i] < answer[i].time) isLate = true;
@@ -60,10 +64,6 @@ const process = {
                 }
             }
             client.db("Quiz").collection("Answers").insertOne({
-                id: req.body.id, name: req.body.name, answers: answer, score: score
-            });
-
-            console.log({
                 id: req.body.id, name: req.body.name, answers: answer, score: score
             });
             return res.json({ score: score });
