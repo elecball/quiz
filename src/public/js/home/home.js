@@ -40,8 +40,6 @@ function go_quiz() {
             id: tempName,
         };
 
-        console.log(tempName);
-
         fetch("/isExisting", {
             method: "POST",
             headers: {

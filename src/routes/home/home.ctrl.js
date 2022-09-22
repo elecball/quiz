@@ -62,8 +62,6 @@ const process = {
             }
         });
 
-        console.log(response);
-
         if (response.success) {
             userList().insertOne({ 
                 "id": req.body.id, 

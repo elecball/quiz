@@ -49,7 +49,6 @@ function submitAnswer(num) {
         })
         .then((res) => res.json())
         .then((res) => {
-            console.log(res);
             scoreL.innerHTML = res.score;
             scoreL.hidden = false;
         })
