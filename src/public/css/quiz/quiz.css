@@ -38,13 +38,12 @@ h3 {
 #lateM {
   position: absolute;
   top: 10%;
-  color: hsl(23, 98%, 68%);
   font-size: 1.5rem;
+  color: coral;
 }
 
 .show {
-  background: transparent;
-  transition: transform .2s;
+  opacity: 1;
 }
 
 .container .choices {

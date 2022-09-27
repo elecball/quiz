@@ -18,17 +18,20 @@ btn3.addEventListener('click', () => submitAnswer(3));
 btn4.addEventListener('click', () => submitAnswer(4));
 exitBtn.addEventListener('click', () => location.href = "/");
 
-lateM.hidden = true;
-
 var index = 1;
 var answers = {};
 var isSubmitting = { bool: false };
 quizIndex.innerHTML = index.toString();
 
+lateM.hidden = true;
+
 function late(num) {
     lateM.hidden = false;
+    lateM.classList.add("show");
+    lateM.classList.remove("lateIdle");
     setTimeout(() => {
         lateM.hidden = true;
+        lateM.classList.add("remove");
     }, 500);
 }
 
