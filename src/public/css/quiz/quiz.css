@@ -35,6 +35,18 @@ h3 {
   font-size: 3.5rem;
 }
 
+#lateM {
+  position: absolute;
+  top: 10%;
+  color: hsl(23, 98%, 68%);
+  font-size: 1.5rem;
+}
+
+.show {
+  background: transparent;
+  transition: transform .2s;
+}
+
 .container .choices {
     display: flex;
     flex-wrap: wrap;
@@ -51,19 +63,27 @@ h3 {
     border: none;
     margin: .4rem;
     outline: none;
-    background: #dfe4ea;
     user-select: none;
     font-weight: 600;
 }
 
+.idle {
+  background: #dfe4ea;
+}
+
 .container .choices button:hover {
-    background: hsl(184, 98%, 80%);
-    transition: .5s;
+    transform: scale(1.02);
+    transition: transform .1s;
 }
 
 .container .choices button:active {
     transform: scale(.9);
     transition: transform .1s;
+}
+
+.late {
+  background: hsl(50, 98%, 90%);
+  transition: transform .1s;
 }
 
 .container .choices button p {

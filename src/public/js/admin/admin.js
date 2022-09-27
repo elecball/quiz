@@ -1,3 +1,6 @@
+/**
+ * check it is admin
+ */
 async function checkAdmin() {
     if (Cookies.get("userID") == undefined) {
         alert("로그인이 필요합니다.");
@@ -35,6 +38,9 @@ const dlBtn = document.querySelector(".deadline-btn"),
 
 const aTable = document.querySelector(".answers");
 
+/**
+ * set Elements of name, rank, score
+ */
 async function setEles() {
     fetch("/admin/getScores", {
         method: "POST",
@@ -75,11 +81,11 @@ async function setEles() {
     })
     .then((res) => res.json())
     .then((res) => {
-        if (res.index > 10) {
+        if (res.index >= 10) {
             dlBtn.innerHTML = "모두 마감됨";
         }
         else {
-            dlBtn.innerHTML = "마감 : " + res.index;
+            dlBtn.innerHTML = "마감 : " + (res.index + 1);
         }
     
     })
@@ -92,6 +98,9 @@ setEles();
 resetBtn.addEventListener("click", reset);
 dlBtn.addEventListener("click", closeQuiz);
 
+/**
+ * reset the Database
+ */
 async function reset() {
     fetch("/admin/reset", {
         method: "POST",
@@ -105,6 +114,9 @@ async function reset() {
     });
 }
 
+/**
+ * make deadline of quiz in current index
+ */
 async function closeQuiz() {
     fetch("/admin/closeQuiz", {
         method: "POST",
